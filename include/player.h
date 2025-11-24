@@ -1,5 +1,6 @@
 #pragma once
 #include "raylib.h"
+#include "ground.h"
 
 class Player{
 public:
@@ -13,6 +14,6 @@ public:
     Player(float x, float y);
     void Move(float deltaTime);
     void Fall(float deltaTime);
-    void Jump(float deltaTime);
+    void Collide(Ground& ground);
 
 };

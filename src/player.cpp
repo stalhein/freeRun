@@ -1,4 +1,5 @@
 #include "player.h"
+#include "ground.h"
 
 Player::Player(float x, float y){
     position = {x,y};
@@ -22,6 +23,29 @@ void Player::Fall(float deltaTime){
     acceleration.y += 50.0f;
 }
 
-void Player::Jump(float deltaTime){
-
+void Player::Collide(Ground& ground){
+    Result col = ground.Collide((position.x+13*size/2),(position.y+16*size));
+        if (col.hit){
+            inair = false;
+            if (acceleration.y > 0.0f){
+                acceleration.y = 0.0f;
+                position.y = (col.y* 32 *ground.groundScale)-size*16;
+            }
+        }else inair = true;
+        //right collision
+        Result colRight = ground.Collide((position.x+14*size),position.y+16*size-1);
+        if (colRight.hit){
+            if (acceleration.x >= 0){
+                acceleration.x = 0.0f;
+                position.x = colRight.x*(32*ground.groundScale)-(14*size);
+            }
+        }
+        //left collision
+        Result colLeft = ground.Collide((position.x-14),position.y+16*size-1);
+        if (colLeft.hit){
+            if (acceleration.x <= 0){
+                acceleration.x = 0.0f;
+                position.x = colLeft.x*(32*ground.groundScale)+(30*ground.groundScale);
+            }
+        }
 }
