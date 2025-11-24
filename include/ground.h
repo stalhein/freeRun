@@ -2,16 +2,19 @@
 #include "raylib.h"
 #include <vector>
 
-
+struct Result {
+    bool hit;
+    float x;
+    float y;
+};
 
 class Ground{
-private:
-    float groundScale;
 public:
     Texture2D dirtTile;
+    float groundScale;
     std::vector<std::vector<int>> groundTiles;
 
     Ground();
     void Draw();
-    bool Collide(float px, float py);
+    Result Collide(float px, float py);
 };
