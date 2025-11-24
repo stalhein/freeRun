@@ -48,15 +48,18 @@ int main(){
         //draw all the ground
         ground.Draw();
 
-        //debug UI
+        //This  stuff is fro DEBUGGING PRESS [0] to enable debugging menu unside the game
         if (debug_mode){
             char debug_onground[30];
             snprintf(debug_onground, sizeof(debug_onground), "inAir: %s", player.inair ? "true": "false");
             DrawText(debug_onground, 10 , 10 ,40 , BLACK);
+            Result col = ground.Collide((player.position.x+13*player.size/2),(player.position.y+16*player.size));
+            Result colRight = ground.Collide((player.position.x+14*player.size),player.position.y+16*player.size-1);
+            Result colLeft = ground.Collide((player.position.x),player.position.y+16*player.size-1);
             //debug to see what tile the player is colliding with
-            //DrawRectangle(col.x* 32 *ground.groundScale,col.y* 32 *ground.groundScale,32*ground.groundScale,32*ground.groundScale,RED);
-            //DrawRectangle(colRight.x* 32 *ground.groundScale,colRight.y* 32 *ground.groundScale,32*ground.groundScale,32*ground.groundScale,GREEN);
-            //DrawRectangle(colLeft.x* 32 *ground.groundScale,colLeft.y* 32 *ground.groundScale,32*ground.groundScale,32*ground.groundScale,BLUE);
+            DrawRectangle(col.x* 32 *ground.groundScale,col.y* 32 *ground.groundScale,32*ground.groundScale,32*ground.groundScale,RED);
+            DrawRectangle(colRight.x* 32 *ground.groundScale,colRight.y* 32 *ground.groundScale,32*ground.groundScale,32*ground.groundScale,GREEN);
+            DrawRectangle(colLeft.x* 32 *ground.groundScale,colLeft.y* 32 *ground.groundScale,32*ground.groundScale,32*ground.groundScale,BLUE);
         }
 
         //draw the player

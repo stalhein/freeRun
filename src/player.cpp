@@ -41,7 +41,7 @@ void Player::Collide(Ground& ground){
             }
         }
         //left collision
-        Result colLeft = ground.Collide((position.x-14),position.y+16*size-1);
+        Result colLeft = ground.Collide((position.x),position.y+16*size-1);
         if (colLeft.hit){
             if (acceleration.x <= 0){
                 acceleration.x = 0.0f;
