@@ -24,24 +24,26 @@ int main(){
     while (!WindowShouldClose()){
         //get delta time every frame and resets velocity
         float deltaTime = GetFrameTime();
-        Vector2 velocity = {0,0};
 
         //check for keypresses
-        if (IsKeyDown(KEY_RIGHT)) velocity.x = 1.0f;
-        if (IsKeyDown(KEY_LEFT)) velocity.x = -1.0f;
-        if (IsKeyDown(KEY_UP)) player.acceleration = -500.0f;
+        if (IsKeyDown(KEY_RIGHT)) player.acceleration.x += 30.0f;
+        if (IsKeyDown(KEY_LEFT)) player.acceleration.x += -30.0f;
+        if (IsKeyDown(KEY_UP)) player.acceleration.y = -500.0f;
        
+        bool col = ground.Collide(player.position.x,(player.position.y+16*player.size));
 
-        player.Move(velocity.x,velocity.y, deltaTime);
-
-        if (player.position.y <= screenH-200){
-            player.inair = true;
-        }else{
+        if (col){
             player.inair = false;
-            player.position.y = screenH - 200;
-            player.acceleration = 0;
-        }
+            player.acceleration.y = 0.0f;
+
+
+        }else player.inair = true;
+            
+
+        player.Move(deltaTime);
+
         player.Fall(deltaTime);
+        
 
         //draw what is on the screen
         BeginDrawing();
@@ -49,9 +51,6 @@ int main(){
 
         //draw all the ground
         ground.Draw();
-        
-        //making a temporary ground rect
-        DrawRectangle(0,screenH-100,screenW,100,GREEN);
 
         //draw the player
         DrawTextureEx(playerTexture,player.position,0.0f,player.size,WHITE);

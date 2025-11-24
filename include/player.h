@@ -4,16 +4,14 @@
 class Player{
 public:
     Vector2 position;
-    float speed;
-    float jumpHeight;
     int size;
-    float acceleration;
+    Vector2 acceleration;
     float default_acceleration;
     bool inair;
     
 
     Player(float x, float y);
-    void Move(float dx, float dy, float deltaTime);
+    void Move(float deltaTime);
     void Fall(float deltaTime);
     void Jump(float deltaTime);
 

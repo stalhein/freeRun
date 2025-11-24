@@ -13,4 +13,5 @@ public:
 
     Ground();
     void Draw();
+    bool Collide(float px, float py);
 };

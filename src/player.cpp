@@ -2,22 +2,24 @@
 
 Player::Player(float x, float y){
     position = {x,y};
-    speed = 300.0f;
-    jumpHeight = 10.0f;
     size = 5;
     default_acceleration = 10.0f;
-    acceleration = default_acceleration;
+    acceleration = {0.0f,default_acceleration};
     inair = false;
 }
 
-void Player::Move(float dx, float dy, float deltaTime){
-    position.x += dx * speed * deltaTime;
-    position.y += dy * speed * deltaTime;
+void Player::Move(float deltaTime){
+    position.x += acceleration.x * deltaTime;
+    if (acceleration.x != 0.0f){
+        if (acceleration.x < 0.0f){
+            acceleration.x += 20.0f;
+        }else acceleration.x -= 20.0f;
+    }
 }
 
 void Player::Fall(float deltaTime){
-    position.y += acceleration * deltaTime;
-    acceleration += 50;
+    position.y += acceleration.y * deltaTime;
+    acceleration.y += 50.0f;
 }
 
 void Player::Jump(float deltaTime){
