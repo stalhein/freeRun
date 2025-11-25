@@ -1,7 +1,11 @@
 #include "player.h"
 #include "ground.h"
+#include "raylib.h"
+#include "animation.h"
 
 Player::Player(float x, float y){
+    standing_right = LoadTexture("assets/player.png");
+    
     position = {x,y};
     size = 5;
     default_acceleration = 10.0f;
@@ -9,19 +13,22 @@ Player::Player(float x, float y){
     inair = false;
 }
 
+void Player::Draw(){
+    DrawTextureEx(standing_right,position,0.0f,size,WHITE);
+}
+
 void Player::Move(float deltaTime){
     position.x += acceleration.x * deltaTime;
-    if (acceleration.x != -0.0f){
+    if (acceleration.x > 29.0f || acceleration.x < -29.0f || inair){
         if (acceleration.x < 0.0f){
             acceleration.x += 25.0f;
         }else acceleration.x -= 25.0f;
-    }
-    //if (acceleration.x > -10.0f && acceleration.x < 10.0f) acceleration.x = 0.0f;
+    }else acceleration.x = 0.0f;
 }
 
 void Player::Fall(float deltaTime){
     position.y += acceleration.y * deltaTime;
-    acceleration.y += 2000.0f * deltaTime;
+    acceleration.y += 3000.0f * deltaTime;
 }
 
 void Player::Collide(Ground& ground){
@@ -34,7 +41,7 @@ void Player::Collide(Ground& ground){
             }
         }else inair = true;
         //right collision
-        Result colRight = ground.Collide((position.x+18*size),position.y+16*size-1);
+        Result colRight = ground.Collide((position.x+14*size),position.y+16*size-1);
         if (colRight.hit){
             if (acceleration.x >= 0){
                 acceleration.x = 0.0f;
@@ -46,7 +53,7 @@ void Player::Collide(Ground& ground){
         if (colLeft.hit){
             if (acceleration.x <= 0){
                 acceleration.x = 0.0f;
-                position.x = colLeft.x*(32*ground.groundScale)+(24*size);
+                position.x = colLeft.x*(32*ground.groundScale)+(25*size);
             }
         }
 }

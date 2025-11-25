@@ -4,6 +4,7 @@ g++ \
     src/main.cpp \
     src/player.cpp \
     src/ground.cpp \
+    src/animation.cpp \
     -I include \
     -o build \
     -lraylib -lm -ldl -lGL -pthread

@@ -15,12 +15,11 @@ int main(){
     int screenW = GetScreenWidth();
     int screenH = GetScreenHeight();
 
+    const Color SKY = {139, 185, 201, 255};
+
     Player player(600.0f,200.0f);
 
     Ground ground;
-
-    //load images
-    Texture2D playerTexture = LoadTexture("assets/player.png");
 
     //while running
     while (!WindowShouldClose()){
@@ -32,7 +31,7 @@ int main(){
 
         if (IsKeyDown(KEY_RIGHT)) player.acceleration.x += 30.0f;
         if (IsKeyDown(KEY_LEFT)) player.acceleration.x += -30.0f;
-        if (IsKeyDown(KEY_UP)) player.acceleration.y = -800.0f;
+        if (IsKeyDown(KEY_UP)) if (!player.inair) player.acceleration.y = -1500.0f;
        
         //move is for x direction fall is for y direction
         player.Move(deltaTime);
@@ -43,7 +42,7 @@ int main(){
 
         //draw what is on the screen
         BeginDrawing();
-        ClearBackground(WHITE);
+        ClearBackground(SKY);
 
         //draw all the ground
         ground.Draw();
@@ -63,7 +62,7 @@ int main(){
         }
 
         //draw the player
-        DrawTextureEx(playerTexture,player.position,0.0f,player.size,WHITE);
+        player.Draw();
 
 
         EndDrawing();
