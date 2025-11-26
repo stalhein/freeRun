@@ -3,7 +3,13 @@
 FreeRun is a personal project of mine where eventually the end product will be a polished 2D ininite platformer.
 I am also using it as my oportunity to expand on my knowladge of C by writing this game in C++.
 
+## Stage of development.
 Currently this is only on a really early build whith working out movment and classes but screenshots will be availble further into devleopment
+
+Right now ive focused on the core features of the game. Collision, drawing tiles for a map and over all polish.
+Games usually suffer from being too "Floaty" so i have spent a vast amount of time adjusting and tweaking the movment
+to fell somthing more relaistic and nicer to use. Also the collision doesnt try to fake anything, it is made to work and wokr well.
+With directional collision for the player for accurate stops on the map.
 
 <br>
 
