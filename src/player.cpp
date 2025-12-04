@@ -18,6 +18,7 @@ Player::Player(float x, float y)
     default_acceleration = 10.0f;
     acceleration = {0.0f,default_acceleration};
     inair = false;
+    currentChunk = 0;
 }
 
 void Player::Draw(){
@@ -72,4 +73,10 @@ void Player::Collide(Ground& ground){
                 position.x = colLeft.x*(32*ground.groundScale)+(25*size);
             }
         }
+}
+
+void Player::GetChunk(int lgroundScale){
+    //find the chunk the player is in 
+    currentChunk = (position.x + size * 16 / 2) / (32 * lgroundScale * 6);
+    currentChunk = static_cast<int>(currentChunk);
 }

@@ -8,6 +8,7 @@ class Player{
 public:
     Vector2 position;
     int size;
+    int currentChunk;
     Vector2 acceleration;
     float default_acceleration;
     bool inair;
@@ -20,5 +21,6 @@ public:
     void Move(float deltaTime);
     void Fall(float deltaTime);
     void Collide(Ground& ground);
+    void GetChunk(int lgroundScale);
 
 };
