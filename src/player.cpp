@@ -20,6 +20,7 @@ Player::Player(float x, float y)
     inair = false;
     currentChunk = 0;
     lastChunk = currentChunk;
+    currentChunkF = 0.0f;
 }
 
 void Player::Draw(){
@@ -50,7 +51,7 @@ void Player::Fall(float deltaTime){
 }
 
 void Player::Collide(Ground& ground){
-    Result col = ground.Collide((position.x+14*size/2),(position.y+16*size));
+    Result col = ground.Collide(currentChunk,currentChunkF,(position.y+16*size));
         if (col.hit){
             inair = false;
             if (acceleration.y > 0.0f){
@@ -59,7 +60,7 @@ void Player::Collide(Ground& ground){
             }
         }else inair = true;
         //right collision
-        Result colRight = ground.Collide((position.x+14*size),position.y+16*size-1);
+        Result colRight = ground.Collide(currentChunk,currentChunkF,position.y+16*size-1);
         if (colRight.hit){
             if (acceleration.x >= 0){
                 acceleration.x = 0.0f;
@@ -67,7 +68,7 @@ void Player::Collide(Ground& ground){
             }
         }
         //left collision
-        Result colLeft = ground.Collide((position.x),position.y+16*size-1);
+        Result colLeft = ground.Collide(currentChunk,currentChunkF,position.y+16*size-1);
         if (colLeft.hit){
             if (acceleration.x <= 0){
                 acceleration.x = 0.0f;
@@ -78,6 +79,6 @@ void Player::Collide(Ground& ground){
 
 void Player::GetChunk(int lgroundScale){
     //find the chunk the player is in 
-    currentChunk = (position.x + size * 16 / 2) / (32 * lgroundScale * 6);
-    currentChunk = static_cast<int>(currentChunk);
+    currentChunkF = (position.x + size * 16 / 2) / (32 * lgroundScale * 6);
+    currentChunk = static_cast<int>(currentChunkF);
 }

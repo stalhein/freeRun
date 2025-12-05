@@ -48,10 +48,10 @@ int main(){
 
         //move is for x direction fall is for y direction
         player.Move(deltaTime);
-        //player.Fall(deltaTime);
+        player.Fall(deltaTime);
 
         //the player collsion
-        //player.Collide(ground);
+        player.Collide(ground);
 
         //sets the camera target to the new player position
         camera.target = {player.position.x + (player.size*16) /2, player.position.y + (player.size*16)/2};
@@ -82,6 +82,10 @@ int main(){
             char debug_whatChunk[30];
             snprintf(debug_whatChunk, sizeof(debug_whatChunk), "Chunk: %d", player.currentChunk);
             DrawText(debug_whatChunk, 10 , 40 ,40 , BLACK);
+            char debug_subTile[30];
+            int tmpf = static_cast<int>((player.currentChunkF - player.currentChunk) * 6.0f);
+            snprintf(debug_subTile, sizeof(debug_subTile), "Tile in Chunk %d", tmpf);
+            DrawText(debug_subTile, 10 , 70 ,40 , BLACK);
             //Result col = ground.Collide((player.position.x+13*player.size/2),(player.position.y+16*player.size));
             //Result colRight = ground.Collide((player.position.x+14*player.size),player.position.y+16*player.size-1);
             //Result colLeft = ground.Collide((player.position.x),player.position.y+16*player.size-1);

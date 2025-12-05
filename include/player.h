@@ -9,6 +9,7 @@ public:
     Vector2 position;
     int size;
     int currentChunk;
+    float currentChunkF;
     int lastChunk;
     Vector2 acceleration;
     float default_acceleration;

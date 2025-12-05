@@ -37,11 +37,11 @@ void Ground::Draw(){
     }
 }
 
-Result Ground::Collide(float px , float py){
-    int tileX = std::floor(px / (32*(groundScale-position.x)));
+Result Ground::Collide(int pcX, float pcXF , float py){
+    int tileX = static_cast<int>((pcXF - pcX) * 6.0f);
     int tileY = std::floor(py / (32*(groundScale-position.y)));
 
-    if (groundTiles[tileY][tileX] != 0){
+    if (chunksInUse[pcX][tileY][tileX] != 0){
         return {true ,tileX,tileY};
     }else return {false ,tileX,tileY};
 }
