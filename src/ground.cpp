@@ -37,11 +37,13 @@ void Ground::Draw(){
     }
 }
 
-Result Ground::Collide(int pcX, float pcXF , float py){
-    int tileX = static_cast<int>((pcXF - pcX) * 6.0f);
+Result Ground::Collide(float px, float py, float chunkX ){
+    int tileX = std::floor(px / (32*(groundScale-position.x)));
     int tileY = std::floor(py / (32*(groundScale-position.y)));
 
-    if (chunksInUse[pcX][tileY][tileX] != 0){
+    int internalX = static_cast<int>((chunkX - static_cast<int>(chunkX)) * 6.0f);
+
+    if (chunksInUse[2][tileY][internalX] != 0){
         return {true ,tileX,tileY};
     }else return {false ,tileX,tileY};
 }

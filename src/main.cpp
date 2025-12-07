@@ -84,17 +84,17 @@ int main(){
             DrawText(debug_whatChunk, 10 , 40 ,40 , BLACK);
             char debug_subTile[30];
             int tmpf = static_cast<int>((player.currentChunkF - player.currentChunk) * 6.0f);
-            snprintf(debug_subTile, sizeof(debug_subTile), "Tile in Chunk %d", tmpf);
+            snprintf(debug_subTile, sizeof(debug_subTile), "Tile in Chunk %d %f", tmpf, player.currentChunkF);
             DrawText(debug_subTile, 10 , 70 ,40 , BLACK);
-            //Result col = ground.Collide((player.position.x+13*player.size/2),(player.position.y+16*player.size));
-            //Result colRight = ground.Collide((player.position.x+14*player.size),player.position.y+16*player.size-1);
-            //Result colLeft = ground.Collide((player.position.x),player.position.y+16*player.size-1);
+            Result col = ground.Collide((player.position.x+13*player.size/2),(player.position.y+16*player.size),player.currentChunkF);
+            Result colRight = ground.Collide((player.position.x+14*player.size),player.position.y+16*player.size-1,player.currentChunkF);
+            Result colLeft = ground.Collide((player.position.x),player.position.y+16*player.size-1,player.currentChunkF);
             //debug to see what tile the player is colliding with
             //these need to be inside the camera placement
             BeginMode2D(camera);
-            //DrawRectangle(col.x* 32 *ground.groundScale,col.y* 32 *ground.groundScale,32*ground.groundScale,32*ground.groundScale,RED);
-            //DrawRectangle(colRight.x* 32 *ground.groundScale,colRight.y* 32 *ground.groundScale,32*ground.groundScale,32*ground.groundScale,GREEN);
-            //DrawRectangle(colLeft.x* 32 *ground.groundScale,colLeft.y* 32 *ground.groundScale,32*ground.groundScale,32*ground.groundScale,BLUE);
+            DrawRectangle(col.x* 32 *ground.groundScale,col.y* 32 *ground.groundScale,32*ground.groundScale,32*ground.groundScale,RED);
+            DrawRectangle(colRight.x* 32 *ground.groundScale,colRight.y* 32 *ground.groundScale,32*ground.groundScale,32*ground.groundScale,GREEN);
+            DrawRectangle(colLeft.x* 32 *ground.groundScale,colLeft.y* 32 *ground.groundScale,32*ground.groundScale,32*ground.groundScale,BLUE);
             player.Draw();
             EndMode2D();
         }
