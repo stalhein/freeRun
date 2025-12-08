@@ -60,7 +60,7 @@ void Player::Collide(Ground& ground){
             }
         }else inair = true;
         //right collision
-        Result colRight = ground.Collide((position.x+14*size),position.y+16*size-1,(position.x+(size*16)) / (32 * ground.groundScale * 6));
+        Result colRight = ground.Collide((position.x+14*size),position.y+16*size-1,(position.x+size*14) / (32 * ground.groundScale * 6));
         if (colRight.hit){
             if (acceleration.x >= 0){
                 acceleration.x = 0.0f;
