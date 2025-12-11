@@ -17,7 +17,7 @@ int main(){
 
     const Color SKY = {139, 185, 201, 255};
 
-    Player player(3000.0f,1000.0f);
+    Player player(3000.0f,0.0f);
 
     Ground ground;
 
@@ -25,7 +25,7 @@ int main(){
     Camera2D camera =  {0};
     camera.target = {player.position.x + (player.size*16)/2, player.position.y + (player.size*16)/2};
     camera.offset = { screenW/6.0f, screenH/2.0f};
-    camera.zoom = 0.7f;
+    camera.zoom = 0.75f;
 
     //while running
     while (!WindowShouldClose()){
@@ -40,9 +40,9 @@ int main(){
         //check for keypresses
         if (IsKeyPressed(KEY_ZERO)) debug_mode = !debug_mode;
 
-        if (IsKeyDown(KEY_RIGHT)) player.acceleration.x += 35.0f;
-        if (IsKeyDown(KEY_LEFT)) player.acceleration.x += -35.0f;
-        if (IsKeyDown(KEY_UP)) if (!player.inair) player.acceleration.y = -1500.0f;
+        if (IsKeyDown(KEY_D)) player.acceleration.x += 45.0f;
+        if (IsKeyDown(KEY_A) && player.currentChunk > 1) player.acceleration.x += -55.0f;
+        if (IsKeyDown(KEY_SPACE)) if (!player.inair) player.acceleration.y = -1500.0f;
 
         if (IsKeyDown(KEY_EQUAL)) camera.zoom += 0.1f;
         if (IsKeyDown(KEY_MINUS)) camera.zoom -= 0.1f;
