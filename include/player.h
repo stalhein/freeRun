@@ -14,6 +14,7 @@ public:
     Vector2 acceleration;
     float default_acceleration;
     bool inair;
+    int jumpsleft;
     std::vector<int> frames;
     
     Animation animation;

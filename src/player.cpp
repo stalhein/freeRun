@@ -21,6 +21,7 @@ Player::Player(float x, float y)
     currentChunk = 0;
     lastChunk = currentChunk;
     currentChunkF = 0.0f;
+    jumpsleft = 2;
 }
 
 void Player::Draw(){

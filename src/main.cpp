@@ -25,7 +25,7 @@ int main(){
     Camera2D camera =  {0};
     camera.target = {player.position.x + (player.size*16)/2, player.position.y + (player.size*16)/2};
     camera.offset = { screenW/6.0f, screenH/2.0f};
-    camera.zoom = 0.75f;
+    camera.zoom = 0.65f;
 
     //while running
     while (!WindowShouldClose()){
@@ -73,6 +73,19 @@ int main(){
         player.Draw();
 
         EndMode2D();//end of drawing in the world
+
+        //Draw The game UI
+
+        //speedometer
+        DrawRectangle(100,screenH-screenH/10,screenW-200,50,Color{0,0,0,100});
+        DrawRectangle(250,screenH-screenH/11,player.acceleration.x/5,20,GREEN);
+
+
+        char speedometerText[30];
+        snprintf(speedometerText, sizeof(speedometerText), "[%d]", static_cast<int>(player.acceleration.x));
+        DrawText(speedometerText, 110, screenH-screenH/10.5 ,40 , WHITE);
+
+
 
         // draw the debug stuff AFTER the camera is off so it draws to a set place on the screen
         //This  stuff is fro DEBUGGING PRESS [0] to enable debugging menu unside the game
