@@ -7,8 +7,7 @@ I am also using it as my oportunity to expand on my knowladge of C by writing th
 
 <br>
 Now that procudural chunk generation and collision and even acceleraion is fully finished I have been thinking of what to actually make the game about.
-A great idea i have had is an acceleration - speed based ininate runner game where you get a better score the faster you go. Alongside moer polished features like acceleration 
-partials and score and more types of tiles for the game to have. This is an exciting stage of the game development because i can really make it the fun game it was always meant to be.
+A great idea I have had is an acceleration - speed based runner game where you get a better score the faster you go. Alongside more polished features like acceleration and score, and more types of tiles for the game to have. This is an exciting stage of the game development because I can really make it the fun game it was always meant to be.
 
 ## screenshots
 
@@ -35,7 +34,7 @@ This game uses **raylib** and is compiled using **g++**.
 
 ### to install
 
-(assuming your on a debian distro of linux)
+(assuming your on a debian distro of linux which uses apt)
 
 ```
 
@@ -50,20 +49,19 @@ This game uses **raylib** and is compiled using **g++**.
 
 ### 4 DEC 2025
 
-I am now at the point where i am confident in making the game proceduraly generate chunks, as of now  i have properly
-pollished the movement and falling and jumping parts and the game incldudes an animation calss which are basic fundamentals of the game,
-as of now i have started on the chunks being generated around the player (8 at a time) and being generated from a 3D array so it is "procedurally
-generated". this is far greater than most prjects i have done and have pushed my limits which is somthing really enjoable and nice to say!
+I am now at the point where I am confident in making the game proceduraly generate chunks, as of now I have properly
+polished the movement and falling and jumping parts and the game includes an animation class which are basic fundamentals of the game,
+as of now I have started on the chunks being generated around the player (8 at a time) and being generated from a 3D array so it is "procedurally
+generated". This is far greater than most projects I have done and I have pushed my limits which is somthing really enjoyable and nice to say!
 
 <hr>
 
 ### 26 NOV 2025
 
 <hr>
-Currently this is only on a really early build whith working out movment and classes but screenshots will be availble further into devleopment
+Currently this is only on a really early build with working out movement and classes but screenshots will be available further into development.
 
-Right now ive focused on the core features of the game. Collision, drawing tiles for a map and over all polish.
-Games usually suffer from being too "Floaty" so i have spent a vast amount of time adjusting and tweaking the movment
-to fell somthing more relaistic and nicer to use. Also the collision doesnt try to fake anything, it is made to work and wokr well.
-With directional collision for the player for accurate stops on the map.
+Right now I've focused on the core features of the game. Collision, drawing tiles for a map and over all polish.
+Games usually suffer from being too "floaty" so I have spent a vast amount of time adjusting and tweaking the movement
+to fell somthing more realistic and nicer to use. Also the collision doesn't try to fake anything, it is made to work and work well with directional collision for the player for accurate stops on the map.
 <hr>
